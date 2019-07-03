@@ -1,0 +1,22 @@
+#+TITLE: Rust Hello World
+
+#+BEGIN_SRC shell :exports both
+cargo --version
+#+END_SRC
+
+#+RESULTS:
+: cargo 1.34.0 (6789d8a0a 2019-04-01)
+
+#+BEGIN_SRC shell :exports both
+rustc --version
+#+END_SRC
+
+#+RESULTS:
+: rustc 1.34.1 (fc50f328b 2019-04-24)
+
+#+BEGIN_SRC shell :exports both
+rustdoc --version
+#+END_SRC
+
+#+RESULTS:
+: rustdoc 1.34.1 (fc50f328b 2019-04-24)
