@@ -1,5 +1,12 @@
 #+TITLE: Rust Hello World
 
+#+BEGIN_SRC shell :results none
+cargo run
+#+END_SRC
+
+
+* Version
+
 #+BEGIN_SRC shell :exports both
 cargo --version
 #+END_SRC
