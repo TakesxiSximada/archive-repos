@@ -1,0 +1,2 @@
+#+TITLE: CLI command to calculate GCD
+
