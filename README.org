@@ -4,3 +4,5 @@
 cargo run
 #+END_SRC
 
+[[./example.gif]]
+
