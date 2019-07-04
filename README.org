@@ -1,0 +1,2 @@
+#+TITLE: gcd-api - API to calculate the greatest common divisor
+
