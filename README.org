@@ -1,2 +1,6 @@
 #+TITLE: gcd-api - An API to calculate the greatest common divisor
 
+#+BEGIN_SRC 
+cargo run
+#+END_SRC
+
