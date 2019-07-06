@@ -1,4 +1,4 @@
-#+TITLE: Boilerplate account django and react
+#+TITLE: Boilerplate account application Django and Flutter
 
 * Development
 
