@@ -1,5 +1,14 @@
 #+TITLE: Boilerplate account django and react
 
+* Development
+
+** Start Emulator
+
+Run the following command to launch the iOS emulator.
+
+#+BEGIN_SRC shell
+flutter emulators --launch apple_ios_simulator
+#+END_SRC
 
 * API
 
