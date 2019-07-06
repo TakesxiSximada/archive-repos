@@ -1,1 +1,104 @@
 #+TITLE: Boilerplate account django and react
+
+
+* API
+
+#+BEGIN_SRC emacs-lisp :results none
+(setenv "BOILER_API_ORIGIN" "http://127.0.0.1:8000")
+#+END_SRC
+
+** Register
+
+#+BEGIN_SRC restclient
+:ORIGIN := (getenv "BOILER_API_ORIGIN")
+
+POST :ORIGIN/accounts/register/
+Content-Type: application/json
+
+{
+  "username": "test",
+  "password": "local12345",
+  "password_confirm": "local12345"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "id": 1,
+  "username": "test",
+  "first_name": "",
+  "last_name": "",
+  "email": ""
+}
+// POST http://127.0.0.1:8000/accounts/register/
+// HTTP/1.1 201 Created
+// Date: Fri, 05 Jul 2019 00:53:55 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 68
+// Request duration: 0.170253s
+#+END_SRC
+
+** Login
+
+#+BEGIN_SRC restclient
+:ORIGIN := (getenv "BOILER_API_ORIGIN")
+
+POST :ORIGIN/accounts/login/
+Content-Type: application/json
+
+{
+  "login": "test",
+  "password": "local12345"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Login successful"
+}
+// POST http://127.0.0.1:8000/accounts/login/
+// HTTP/1.1 200 OK
+// Date: Fri, 05 Jul 2019 00:55:42 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 29
+// Set-Cookie:  csrftoken=6BWjeLeJ1PcYVb2Eu7MJOmnTgtqkfOSjQAqH5Tysu8y1HTlwoZjYJWmpyv2rLohr; expires=Fri, 03 Jul 2020 00:55:42 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+// Set-Cookie:  sessionid=ve98a0smdaxk4rr4utqdsavhg7c33mlo; expires=Fri, 19 Jul 2019 00:55:42 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+// Request duration: 0.146646s
+#+END_SRC
+
+** Profile
+
+#+BEGIN_SRC restclient
+:ORIGIN := (getenv "BOILER_API_ORIGIN")
+
+GET :ORIGIN/accounts/profile/
+Cookie: sessionid=ve98a0smdaxk4rr4utqdsavhg7c33mlo
+
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Authentication credentials were not provided."
+}
+// GET http://127.0.0.1:8000/accounts/profile/
+// HTTP/1.1 403 Forbidden
+// Date: Fri, 05 Jul 2019 00:58:07 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: PATCH, PUT, GET, OPTIONS, POST
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 58
+// Request duration: 0.003574s
+#+END_SRC
