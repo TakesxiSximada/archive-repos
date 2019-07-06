@@ -10,6 +10,14 @@ Run the following command to launch the iOS emulator.
 flutter emulators --launch apple_ios_simulator
 #+END_SRC
 
+** Start application
+
+Run the following command to start application.
+
+#+BEGIN_SRC
+flutter run
+#+END_SRC
+
 * API
 
 #+BEGIN_SRC emacs-lisp :results none
