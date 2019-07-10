@@ -1,1 +1,15 @@
 #+TITLE: Sentry for local
+
+* Docker Compose
+
+#+BEGIN_SRC :results none
+docker-compose up -d
+#+END_SRC
+
+#+BEGIN_SRC
+docker-compose exec web sh
+#+END_SRC
+
+#+BEGIN_SRC
+sentry upgrade
+#+END_SRC
