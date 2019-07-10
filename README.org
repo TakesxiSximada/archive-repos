@@ -7,9 +7,5 @@ docker-compose up -d
 #+END_SRC
 
 #+BEGIN_SRC
-docker-compose exec web sh
-#+END_SRC
-
-#+BEGIN_SRC
-sentry upgrade
+docker-compose exec web sentry upgrade
 #+END_SRC
