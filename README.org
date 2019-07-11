@@ -1,10 +1,12 @@
 #+TITLE: Sentry for local
 
-* Docker Compose
+Launch Sentry.
 
 #+BEGIN_SRC :results none
 docker-compose up -d
 #+END_SRC
+
+Migrate database.
 
 #+BEGIN_SRC
 docker-compose exec web sentry upgrade
