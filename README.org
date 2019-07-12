@@ -19,6 +19,8 @@ samples, guidance on mobile development, and a full API reference.
 
 * Development
 
+[[./tutorial.gif]]
+
 ** Start Emulator
 
 Run the following command to launch the iOS emulator.
