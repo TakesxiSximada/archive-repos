@@ -18,5 +18,3 @@
 *** [[https://dev.mysql.com/doc/relnotes/mysql/8.0/en/][MySQL 8.0.x]]
 
 **** [[https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-16.html][8.0.16]]
-
-
