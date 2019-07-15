@@ -5,6 +5,7 @@
 
 *** [[https://lists.gnu.org/archive/html/emacs-devel/2019-04/msg00503.html][Emacs 26.2]]
 
+
 ** [[https://nodejs.org/ja/download/releases/][Node.js]]
 
 *** [[https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V12.md#12.6.0][Node.js 12.6.0]]
