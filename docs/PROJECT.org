@@ -1,5 +1,0 @@
-#+TITLE: Project
-
-* Tasks
-
-** TODO Django Rest Authのexampleをそのまま設定する
