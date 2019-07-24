@@ -1,0 +1,123 @@
+#+TITLE: API
+
+* Sign up
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq my_origin "http://127.0.0.1:8000")
+(setq my_username "test7")
+(setq my_email (format "%s@example.com" my_username))
+(setq my_email_verify_key "5209a95d4e5ebb1f60a830d280dc774edae574dc")
+(setq my_password "local12345")
+(setq restclient-inhibit-cookies t)
+#+END_SRC
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:USERNAME := my_username
+:EMAIL := my_email
+:PASSWORD := my_password
+
+POST :ORIGIN/register/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": ":USERNAME",
+  "email": ":EMAIL",
+  "password1": ":PASSWORD",
+  "password2": ":PASSWORD"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Verification e-mail sent."
+}
+// POST http://127.0.0.1:8000/register/
+// HTTP/1.1 201 Created
+// Date: Wed, 24 Jul 2019 07:53:27 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 38
+// Set-Cookie:  messages="1f974dd5b2fd62336f82f9ebd39f3e78f225d8d6$[[\"__json_message\"\0540\05420\054\"Confirmation e-mail sent to test7@example.com.\"]]"; HttpOnly; Path=/; SameSite=Lax
+// Set-Cookie:  sessionid=rrk0alydufjvp9knsu4d3t50lc7fjs2l; expires=Wed, 07 Aug 2019 07:53:27 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+// Request duration: 5.215791s
+#+END_SRC
+
+* メールアドレスの確認
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq my_email_verify_key "acff29fe096dfa820d89c765b18b0813dd2918d9")
+#+END_SRC
+
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:EMAIL_VERIFY_KEY := my_email_verify_key
+
+POST :ORIGIN/register/verify-email/
+Content-Type: application/json
+
+{
+  "key": ":EMAIL_VERIFY_KEY"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Not found."
+}
+// POST http://127.0.0.1:8000/register/verify-email/
+// HTTP/1.1 404 Not Found
+// Date: Wed, 24 Jul 2019 07:41:14 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS, HEAD
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 23
+// Request duration: 0.011608s
+#+END_SRC
+
+* Sign In
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:USERNAME := my_username
+:EMAIL := my_email
+:PASSWORD := my_password
+
+POST :ORIGIN/login/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": ":USERNAME",
+  "email": ":EMAIL",
+  "password": ":PASSWORD"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "non_field_errors": [
+    "Unable to log in with provided credentials."
+  ]
+}
+// POST http://127.0.0.1:8000/login/
+// HTTP/1.1 400 Bad Request
+// Date: Wed, 24 Jul 2019 07:57:41 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 68
+// Request duration: 0.128913s
+#+END_SRC
