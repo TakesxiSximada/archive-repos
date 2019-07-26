@@ -1,5 +1,0 @@
-django-allauth
-django-environ
-django-rest-auth
-django-rest-swagger
-djangorestframework
