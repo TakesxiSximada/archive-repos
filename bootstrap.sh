@@ -9,3 +9,4 @@ cd src
 ./configure --with-ns --with-mac --enable-mac-app
 make
 make install
+open nextstep
