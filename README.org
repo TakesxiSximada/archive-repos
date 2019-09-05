@@ -10,3 +10,9 @@ No! Try not. Do. Or do not. There is no try.
 #+BEGIN_SRC
 ansible-playbook site.yaml
 #+END_SRC
+
+** Must not be known to anyone
+
+#+BEGIN_EXAMPLE
+echo "SECRET" > .vault_password
+#+END_EXAMPLE
