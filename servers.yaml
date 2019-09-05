@@ -1,0 +1,6 @@
+---
+- name: Deploy servers
+  hosts: all
+  become: yes
+  roles:
+    - staff

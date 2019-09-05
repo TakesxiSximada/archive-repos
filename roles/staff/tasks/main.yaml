@@ -1,0 +1,6 @@
+- name: authorized keys is deployed
+  include: create_staff.yaml
+
+  loop_control:
+    loop_var: staff
+  with_items: "{{ staff_list }}"
