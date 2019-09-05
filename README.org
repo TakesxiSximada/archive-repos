@@ -1,2 +1,12 @@
 #+TITLE: ops-dc
 
+#+BEGIN_QUOTE
+No! Try not. Do. Or do not. There is no try.
+#+END_QUOTE
+(Star Wars: Episode V The Empire Strikes Back)
+
+** Deploy it!!
+
+#+BEGIN_SRC
+ansible-playbook site.yaml
+#+END_SRC
