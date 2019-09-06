@@ -1,6 +1,14 @@
-- name: authorized keys is deployed
-  include: create_staff.yaml
+- name: Create group
+  group:
+    gid: "{{ group.gid }}"
+    name: "{{ group.name }}"
+    state: "{{ group.state }}"
+  loop_control:
+    loop_var: group
+  with_items: "{{ group_list }}"
 
+- name: Create user
+  include: create_staff.yaml
   loop_control:
     loop_var: staff
   with_items: "{{ staff_list }}"

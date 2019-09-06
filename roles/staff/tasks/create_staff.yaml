@@ -1,4 +1,10 @@
 ---
+- user:
+    name: "{{ staff.name }}"
+    group: "{{ staff.group }}"
+    uid: "{{ staff.uid }}"
+    state: "{{ staff.state }}"
+
 - authorized_key:
     user: "{{ staff.name }}"
     state: "{{ authorized_key.state }}"
