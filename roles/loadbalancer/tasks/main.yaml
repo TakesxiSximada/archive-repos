@@ -1,0 +1,13 @@
+- name: Install Nginx
+  apt:
+    name: nginx
+
+- name: nginx.conf
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: 0644
+  changed_when: true
+  notify: Reload NGINX
