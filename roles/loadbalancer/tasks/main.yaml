@@ -1,3 +1,13 @@
+- name: Install certbot
+  apt:
+    name: certbot
+    state: present
+
+- name: Install certbot nginx plugin
+  apt:
+    name: python-certbot-nginx
+    state: present
+
 - name: Install Nginx
   apt:
     name: nginx
@@ -10,4 +20,21 @@
     group: root
     mode: 0644
   changed_when: true
+  notify: Reload NGINX
+
+- name: sites-available/{{ sites.orz.domain }}
+  template:
+    src: sites-available/base.html
+    dest: /etc/nginx/sites-available/{{ sites.orz.domain }}
+    owner: root
+    group: root
+    mode: 0644
+  changed_when: true
+  notify: Reload NGINX
+
+- name: sites-enabled/{{ sites.orz.domain }}
+  file:
+    src: /etc/nginx/sites-available/{{ sites.orz.domain }}
+    dest: /etc/nginx/sites-enabled/{{ sites.orz.domain }}
+    state: link
   notify: Reload NGINX
