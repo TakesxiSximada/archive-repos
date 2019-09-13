@@ -391,7 +391,9 @@
 			  ]),
 			  m("div", {"class": "shadow scale"}),
 			  m("h1", "Running!!"),
-			  m("p", vnode.attrs.url),
+			  m("p", [
+			      m("a", {"href": vnode.attrs.url}, vnode.attrs.url),
+			  ]),
 			  // m("button", "XXX"),
 		      ]));
 	      case 99:
