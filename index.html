@@ -401,7 +401,7 @@
 		  return m("span", "unknown");
 	      }
 	  }
-      }
+      };
       var ServerMonitorListState = {
 	  data: {
 	      monitors: [],
@@ -422,9 +422,11 @@
 	      return m("div", this.data.monitors.map(function (monitor) {
 		  return m(ServiceMonitor, monitor);
 	      }));
-	      m.mount(
-		  document.querySelector("#main"),
-		  ServerMonitorListState)
+	  }
+      };
+      m.mount(
+	  document.querySelector("#main"),
+	  ServerMonitorListState);
     </script>
   </body>
 </html>
