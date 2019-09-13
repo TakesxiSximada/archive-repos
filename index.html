@@ -15,7 +15,8 @@
 	  overflow: hidden;
 	  font-family: "Lato", sans-serif;
 	  text-align: center;
-	  margin: auto;
+	  margin-left: auto;
+	  margin-right: auto;
 	  background: #e2dedb;
 	  color: #b3aca7;
       }
@@ -412,6 +413,8 @@
     		  url: "https://sximada.orz.hm/status/status.json",
 	      }).then((result) => {
 		  this.data.monitors = result.monitors;
+	      }).catch(() => {
+		  this.data.monitors = [{}];
 	      });
 	  },
 	  view: function(vnode) {
