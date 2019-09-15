@@ -1,0 +1,5 @@
+- name: Setting ssh service settings
+  systemd:
+    name: ssh
+    state: started
+    enabled: yes
