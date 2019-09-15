@@ -1,0 +1,11 @@
+[Unit]
+Description=Datadog Agent
+After=syslog.target network.target
+
+[Service]
+Type=simple
+PIDFile=/run/datadog.pid
+ExecStart=/opt/datadog-agent/agent run
+
+[Install]
+WantedBy=multi-user.target

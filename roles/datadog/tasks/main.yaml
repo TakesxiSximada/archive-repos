@@ -1,0 +1,74 @@
+# /opt/datadog
+- name: Create datadog-agent application directory
+  file:
+    path: /opt/datadog-agent
+    state: directory
+
+- name: Download datadog-agent binary 
+  get_url:
+    url: https://github.com/sximada/ops-dc/releases/download/pre1/agent.gz
+    dest: /opt/datadog-agent/agent.pre1.gz
+    
+- name: Decompress datadog-agent binary
+  shell: gzip -dc /opt/datadog-agent/agent.pre1.gz > /opt/datadog-agent/agent.pre1
+  args:
+    creates: /opt/datadog-agent/agent.pre1
+    
+- name: Change datadog-agent binary file mode
+  file:
+    path: /opt/datadog-agent/agent.pre1
+    mode: u+rwx
+    
+- name: Create datadog-agent link
+  file:
+    src: /opt/datadog-agent/agent.pre1
+    dest: /opt/datadog-agent/agent
+    state: link
+
+# /etc/datadog-agent
+- name: Create datadog-agent config directory
+  file:
+    path: /etc/datadog-agent/
+    state: directory
+
+- name: Create datadog-agent config file
+  template:
+    src: datadog.yaml
+    dest: /etc/datadog-agent/datadog.yaml
+
+
+# /etc/datadog-agent configration
+- name: Upload datadog conf.d
+  copy:
+    src: conf.d
+    dest: /etc/datadog-agent/
+    directory_mode: yes
+
+- name: Upload datadog templates
+  copy:
+    src: templates
+    dest: /etc/datadog-agent/
+    directory_mode: yes
+
+- name: Upload datadog views
+  copy:
+    src: views
+    dest: /etc/datadog-agent/
+    directory_mode: yes
+
+# systemd
+- name: Create datadog-agent service
+  template:
+    src: datadog-agent.service
+    dest: /opt/datadog-agent/datadog-agent.service
+
+- name: Registration datadog-agent service
+  file:
+    src: /opt/datadog-agent/datadog-agent.service
+    dest: /etc/systemd/system/datadog-agent.service
+    state: link
+    
+- name: Setting datadog-agent service settings
+  systemd:
+    name: datadog-agent.service
+    state: started
