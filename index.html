@@ -401,7 +401,20 @@
 	      case 98:
 		  return m("span", "started");
 	      default:
-		  return m("span", "unknown");
+		  return (
+		      m("div", {"class": "status-box service-status-down"}, [
+			  m("div", {"class": "dot"}),
+			  m("div", {"class": "dot two"}),
+			  m("div", {"class": "face"}, [
+			      m("div", {"class": "eye"}),
+			      m("div", {"class": "eye right"}),
+			      m("div", {"class": "mouth sad"}),
+			  ]),
+			  m("div", {"class": "shadow move"}),
+			  m("h1", "Oops!!Down!!"),
+			  m("p", vnode.attrs.url),
+			  m("button", "Cheer!!"),
+		      ]));
 	      }
 	  }
       };
