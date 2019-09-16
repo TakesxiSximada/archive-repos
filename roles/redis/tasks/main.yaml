@@ -1,0 +1,13 @@
+- name: Install redis
+  apt:
+    name: redis-server
+    
+- name: Create redis settings directory
+  file:
+    path: /etc/redis
+    state: directory
+
+- name: Create redis settings file
+  template:
+    src: redis.conf
+    dest: /etc/redis/redis.conf
