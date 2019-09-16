@@ -11,3 +11,4 @@
   template:
     src: redis.conf
     dest: /etc/redis/redis.conf
+  notify: Reload redis-server
