@@ -1,0 +1,11 @@
+[Unit]
+Description=KeyCloak
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/keycloak/keycloak-7.0.0/bin 
+ExecStart=/opt/keycloak/keycloak-7.0.0/bin/standalone.sh
+Restart = always
+
+[Install]
+WantedBy=multi-user.target

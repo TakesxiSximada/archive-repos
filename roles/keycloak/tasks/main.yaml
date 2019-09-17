@@ -1,0 +1,16 @@
+# systemd
+- name: Create keycloak service
+  template:
+    src: keycloak.service
+    dest: /opt/keycloak/keycloak.service
+    
+- name: Registration keycloak service
+  file:
+    src: /opt/keycloak/keycloak.service
+    dest: /etc/systemd/system/keycloak.service
+    state: link
+    
+- name: Start keycloak
+  systemd:
+    name: keycloak.service
+    state: started
