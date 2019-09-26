@@ -61,7 +61,7 @@ api_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx&format=json&logs=1
 
 * Others
 
-- https://uptimerobot.com/
 - https://app.datadoghq.com/
+- https://lastpass.com/
 - https://papertrailapp.com/
-
+- https://uptimerobot.com/
