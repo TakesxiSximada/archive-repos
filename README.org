@@ -62,6 +62,7 @@ api_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx&format=json&logs=1
 * Others
 
 - https://app.datadoghq.com/
+- https://dash.cloudflare.com/
 - https://lastpass.com/
 - https://papertrailapp.com/
 - https://uptimerobot.com/
