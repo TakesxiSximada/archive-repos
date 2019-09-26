@@ -1,0 +1,10 @@
+- name: "sites-available/{{ symdon_auth.host }}"
+  template:
+    src: sites-available.conf
+    dest: "/etc/nginx/sites-available/{{ symdon_auth.host }}"
+
+- name: "sites-enabled/{{ symdon_auth.host }}"
+  file:
+    src: "/etc/nginx/sites-available/{{ symdon_auth.host }}"
+    dest: "/etc/nginx/sites-enabled/{{ symdon_auth.host }}"
+    state: link
