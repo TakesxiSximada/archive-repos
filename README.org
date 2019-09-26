@@ -15,7 +15,7 @@ ansible-playbook site.yaml
 
 ** Must not be known to anyone
 
-   #+BEGIN_EXAMPLE
+#+BEGIN_EXAMPLE
 echo "SECRET" > .vault_password
 #+END_EXAMPLE
 
