@@ -5,3 +5,4 @@
   become: yes
   roles:
     - symdon/auth
+    - symdon/demo-angular
