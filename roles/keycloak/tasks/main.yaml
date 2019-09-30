@@ -3,13 +3,24 @@
   template:
     src: keycloak.service
     dest: /opt/keycloak/keycloak.service
-    
+
 - name: Registration keycloak service
   file:
     src: /opt/keycloak/keycloak.service
     dest: /etc/systemd/system/keycloak.service
     state: link
-    
+
+- name: Link keycloak current
+  file:
+    src: /opt/keycloak/keycloak-7.0.0
+    dest: /opt/keycloak/current
+    state: link
+
+- name: Keycloak standalone settings
+  template:
+    src: standalone.xml
+    dest: /opt/keycloak/current/standalone/configuration/standalone.xml
+
 - name: Start keycloak
   systemd:
     name: keycloak.service
