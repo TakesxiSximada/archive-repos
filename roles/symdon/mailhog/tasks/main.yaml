@@ -1,0 +1,44 @@
+# systemd
+- name: Create mailhog service
+  template:
+    src: mailhog.service
+    dest: /opt/mailhog/mailhog.service
+
+- name: Registration mailhog service
+  file:
+    src: /opt/mailhog/mailhog.service
+    dest: /etc/systemd/system/mailhog.service
+    state: link
+
+- name: Start mailhog
+  systemd:
+    name: mailhog.service
+    state: started
+
+# Nginx
+- name: mailhog sites-available
+  template:
+    src: sites-available.conf
+    dest: "/etc/nginx/sites-available/{{ mailhog.host }}"
+  changed_when: true
+  notify: Reload NGINX
+
+- name: mailhog sites-enabled
+  file:
+    src: "/etc/nginx/sites-available/{{ mailhog.host }}"
+    dest: "/etc/nginx/sites-enabled/{{ mailhog.host }}"
+    state: link
+  changed_when: true
+  notify: Reload NGINX
+
+# Basic auth
+- name: Create htpasswd directory
+  file:
+    path: /etc/nginx/.htpasswd
+    state: directory
+
+- name: htpasswd
+  template:
+    src: htpasswd
+    dest: "/etc/nginx/.htpasswd/{{ mailhog.host }}"
+

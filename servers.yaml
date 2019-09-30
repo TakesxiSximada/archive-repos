@@ -6,3 +6,5 @@
   roles:
     - symdon/auth
     - symdon/demo-angular
+    - role: symdon/mailhog
+      tags: symdon/mailhog

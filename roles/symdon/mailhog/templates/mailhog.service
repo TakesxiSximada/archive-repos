@@ -1,0 +1,11 @@
+[Unit]
+Description=MailHog
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/mailhog/
+ExecStart=/opt/mailhog/MailHog_linux_arm
+Restart = always
+
+[Install]
+WantedBy=multi-user.target
