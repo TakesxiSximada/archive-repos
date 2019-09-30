@@ -1,0 +1,38 @@
+- name: Create demo-angular directory
+  file:
+    path: /opt/demo-angular
+    state: directory
+
+- name: Unarchive demo-angular archive
+  unarchive:
+    src: https://github.com/sximada/demo-angular/releases/download/v0.1.5/demo-angular-v0.1.5.tar.gz
+    remote_src: yes
+    dest: /opt/demo-angular
+
+- name: link demo-angular current version
+  file:
+    src: /opt/demo-angular/demo-angular-v0.1.5
+    dest: /opt/demo-angular/current
+    state: link
+
+- name: link demo-angular /var/www
+  file:
+    src: /opt/demo-angular/current
+    dest: /var/www/demo-angular.symdon.ga
+    state: link
+
+- name: Deploy nginx settings
+  template:
+    src: sites-available.conf
+    dest: /etc/nginx/sites-available/demo-angular.symdon.ga
+
+- name: sites-enabled/demo-angular.symdon.ga
+  file:
+    src: /etc/nginx/sites-available/demo-angular.symdon.ga
+    dest: /etc/nginx/sites-enabled/demo-angular.symdon.ga
+    state: link
+
+- name: Deploy keycloak settings file
+  template:
+    src: keycloak-config.js
+    dest: /opt/demo-angular/current/assets/keycloak-config.js
