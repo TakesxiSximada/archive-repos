@@ -1,2 +1,3 @@
 -OPS-DEBUG: ansible-playbook debug.yaml
 -OPS-MAIN: ansible-playbook site.yaml
+-DEPLOY-MAILHOG: ansible-playbook site.yaml --tags "symdon/mailhog"
