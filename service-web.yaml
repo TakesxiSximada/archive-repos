@@ -1,0 +1,23 @@
+---
+- name: Deploy symdon.ga service
+  hosts: all
+  gather_facts: no
+  become: yes
+  vars:
+    domain: "symdon.ga"
+    redirect_url: "https://www.symdon.ga"
+  handlers:
+    - include: handlers/main.yaml
+  tasks:
+    - name: avairable site
+      template:
+        src: sites-available/redirect.conf
+        dest: "/etc/nginx/sites-available/{{ domain }}"
+      notify: service nginx reload
+      changed_when: true
+
+    - name: enable site
+      file:
+        src: "/etc/nginx/sites-available/{{ domain }}"
+        dest: "/etc/nginx/sites-enabled/{{ domain }}"
+        state: link

@@ -3,4 +3,5 @@
 -DEPLOY-MAILHOG: ansible-playbook site.yaml --tags "symdon/mailhog"
 -OPS-DEBUG: ansible-playbook debug.yaml
 -OPS-MAIN: ansible-playbook site.yaml
--SERVICE-WWW: ansible-playbook service-www.yaml
+-SERVICE-WEB-WWW: ansible-playbook service-web-www.yaml
+-SERVICE-WEB: ansible-playbook service-web.yaml
