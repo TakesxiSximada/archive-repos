@@ -1,3 +1,6 @@
+-DEPLOY-AUTH: ansible-playbook site.yaml --tags "symdon/auth"
+-DEPLOY-DEMO-ANGULAR: ansible-playbook site.yaml --tags "symdon/demo-angular"
+-DEPLOY-MAILHOG: ansible-playbook site.yaml --tags "symdon/mailhog"
 -OPS-DEBUG: ansible-playbook debug.yaml
 -OPS-MAIN: ansible-playbook site.yaml
--DEPLOY-MAILHOG: ansible-playbook site.yaml --tags "symdon/mailhog"
+-SERVICE-WWW: ansible-playbook service-www.yaml
