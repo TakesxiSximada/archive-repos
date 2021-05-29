@@ -1,4 +1,2 @@
-#+CAPTION: foo
-#+ATTR_HTML: :alt status image :title status :align right
-[[https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiN2p4QVNvTlRJV2p0eUtkczkxVUpVZGoxZEE1ZXdiSzRKcmRRWUk1aTlJelNKMEpNYklFc1R0TTBKWEcrWU5aeUZNa3ZQRGpiellWZzJzZzQxV3ZZbFFrPSIsIml2UGFyYW1ldGVyU3BlYyI6IkJPbnFORi83Rmo2ZjdlUWkiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main]]
 
+#+html: <img src="https://codebuild.ap-northeast-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiN2p4QVNvTlRJV2p0eUtkczkxVUpVZGoxZEE1ZXdiSzRKcmRRWUk1aTlJelNKMEpNYklFc1R0TTBKWEcrWU5aeUZNa3ZQRGpiellWZzJzZzQxV3ZZbFFrPSIsIml2UGFyYW1ldGVyU3BlYyI6IkJPbnFORi83Rmo2ZjdlUWkiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main" />
