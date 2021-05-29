@@ -4,6 +4,7 @@ phases:
   pre_build:
     commands:
       - git branch
+      - env
       - echo $AWS_DEFAULT_REGION
       - echo $AWS_REGION
       - echo $BATCH_BUILD_IDENTIFIER
