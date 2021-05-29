@@ -3,6 +3,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - git branch
       - echo $AWS_DEFAULT_REGION
       - echo $AWS_REGION
       - echo $BATCH_BUILD_IDENTIFIER
