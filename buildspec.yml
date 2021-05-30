@@ -1,23 +1,22 @@
 version: 0.2
 
-phases:
+env:
+  shell: bash
 
+phases:
   pre_build:
     commands:
-      - export IMAGE_TAG=$(echo ${CODEBUILD_WEBHOOK_TRIGGER} | awk -F '/' '{printf "%s-rc", $3 }' )
+      - export IMAGE_TAG_BASE=$(echo ${CODEBUILD_WEBHOOK_TRIGGER} | rev | awk -F '/' '{printf "%s", $1 }' | rev)
+      - export IMAGE_TAG_IS_RC=$(if [[ ${CODEBUILD_WEBHOOK_TRIGGER} != tag/* ]]; then echo "-rc"; else echo ""; fi)
+      - export IMAGE_TAG=$(echo -n "${IMAGE_TAG_BASE}${IMAGE_TAG_IS_RC}")
       - export IMAGE_NAME=testing
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
 
   build:
     commands:
-      - echo $CODEBUILD_WEBHOOK_TRIGGER
-      - echo $CODEBUILD_WEBHOOK_HEAD_REF
-      - echo Build started on `date`
-      - echo Building the Docker image...
       - docker build -t $IMAGE_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
+
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_NAME:$IMAGE_TAG
