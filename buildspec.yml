@@ -1,37 +1,12 @@
 version: 0.2
 
 phases:
+
   pre_build:
     commands:
-      - git branch
-      - env
-      - echo $AWS_DEFAULT_REGION
-      - echo $AWS_REGION
-      - echo $BATCH_BUILD_IDENTIFIER
-      - echo $BUILD_ARN
-      - echo $BUILD_NUMBER
-      - echo $CODEBUILD
-      - echo $CODEBUILD_ID
-      - echo $CODEBUILD_IMAGE
-      - echo $CODEBUILD_KMS_KEY_ID
-      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
-      - echo $CODEBUILD_SOURCE_REPO_URL
-      - echo $CODEBUILD_SUCCEPSING
-      - echo $CODEBUILD_TIME
-      - echo $CODEBUILD_WEBHOOK_ACTOR_ACCOUNT_ID
-      - echo $CODEBUILD_WEBHOOK_MERGE_COMMIT
-      - echo $DOWNLOAD_SOURCE
-      - echo $INITIATOR
-      - echo $SRC_DIR
-      - echo $WEBHOOKEVENT
-      - echo $WEBHOOK_BASE_REF
-      - echo $WEBHOOK_HEAD_REF
-      - echo $WEBHOOK_PREV_COMMIT
-      - echo $WEBHOOK_TRIGGER
-      - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - export IMAGE_TAG=$(echo ${CODEBUILD_WEBHOOK_TRIGGER} | awk -F '/' '{printf "%s-rc", $3 }' )
       - export IMAGE_NAME=testing
-      - export IMAGE_TAG=z01
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
 
   build:
     commands:
