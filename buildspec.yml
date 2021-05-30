@@ -1,7 +1,9 @@
 version: 0.2
 
-phases:
+env:
+  shell: bash
 
+phases:
   pre_build:
     commands:
       - export IMAGE_TAG_BASEE=$(echo ${CODEBUILD_WEBHOOK_TRIGGER} | rev | awk -F '/' '{printf "%s", $1 }' | rev)
