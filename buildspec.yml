@@ -1,6 +1,7 @@
 version: 0.2
 
 phases:
+
   pre_build:
     commands:
       - export IMAGE_TAG=$(echo ${CODEBUILD_WEBHOOK_TRIGGER} | awk -F '/' '{printf "%s-rc", $3 }' )
