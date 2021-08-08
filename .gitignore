@@ -1,8 +1,0 @@
-bower_components/**
-node_modules/**
-vendor/**
-build/**
-var/**
-Gemfile.lock
-.DS_Store
-assets/.sass-cache
