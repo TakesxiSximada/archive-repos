@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.7-stretch-browsers
+
+    working_directory: ~/repo
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "requirements.txt" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+
+      - save_cache:
+          paths:
+            - ./venv
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
+
+      - run:
+          name: Start api
+          command: |
+            . venv/bin/activate
+            python manage.py migrate && python manage.py runserver &
+            cd client && npm run dev &
+            curl https://chromedriver.storage.googleapis.com/2.43/chromedriver_linux64.zip -o chromedriver_linux64.zip
+            md5sum -c chromedriver_md5sum.txt
+            unzip chromedriver_linux64.zip
+            sleep 10
+            PATH=$PATH:$PWD python e2e.py
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
