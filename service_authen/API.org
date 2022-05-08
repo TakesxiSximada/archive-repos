@@ -1,0 +1,420 @@
+#+TITLE: API
+
+* Sign up
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq my_origin "http://127.0.0.1:8000/rest-auth")
+(setq my_username "test10")
+(setq my_email (format "%s@example.com" my_username))
+(setq my_password "local12345")
+(setq restclient-inhibit-cookies t)
+#+END_SRC
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:USERNAME := my_username
+:EMAIL := my_email
+:PASSWORD := my_password
+
+POST :ORIGIN/registration/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": ":USERNAME",
+  "email": ":EMAIL",
+  "password1": ":PASSWORD",
+  "password2": ":PASSWORD"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "key": "fefe43ca25b570ed2db1811fcfddb374d4d293c3"
+}
+// POST http://127.0.0.1:8000/rest-auth/registration/
+// HTTP/1.1 201 Created
+// Date: Fri, 26 Jul 2019 02:28:02 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 50
+// Set-Cookie:  messages="ac626cc0b408bbc816c5857070ca3cf735b8edfc$[[\"__json_message\"\0540\05420\054\"Confirmation e-mail sent to test10@example.com.\"]\054[\"__json_message\"\0540\05425\054\"Successfully signed in as test10.\"]]"; HttpOnly; Path=/; SameSite=Lax
+// Set-Cookie:  csrftoken=PiEO5kpdBDIoYxwgJhZR4rzNvS9zi5qJm6biMvHtFdEXbtBvfLFkc6SZWw9ItntP; expires=Fri, 24 Jul 2020 02:28:02 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+// Set-Cookie:  sessionid=07r8y896rzudytnd4q1xlgmulqchpms7; expires=Fri, 09 Aug 2019 02:28:02 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+// Request duration: 5.214960s
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq my_email_verify_key "fefe43ca25b570ed2db1811fcfddb374d4d293c3")
+#+END_SRC
+
+* Verify registration email
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:EMAIL_VERIFY_KEY := my_email_verify_key
+
+POST :ORIGIN/registration/verify-email/
+Content-Type: application/json
+
+{
+  "key": ":EMAIL_VERIFY_KEY"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Not found."
+}
+// POST http://127.0.0.1:8000/rest-auth/registration/verify-email/
+// HTTP/1.1 404 Not Found
+// Date: Fri, 26 Jul 2019 02:29:31 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS, HEAD
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 23
+// Request duration: 0.012847s
+#+END_SRC
+
+* Sign In
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:USERNAME := my_username
+:EMAIL := my_email
+:PASSWORD := my_password
+
+POST :ORIGIN/login/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": ":USERNAME",
+  "email": ":EMAIL",
+  "password": ":PASSWORD"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "key": "fefe43ca25b570ed2db1811fcfddb374d4d293c3"
+}
+// POST http://127.0.0.1:8000/rest-auth/login/
+// HTTP/1.1 200 OK
+// Date: Fri, 26 Jul 2019 02:29:42 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: POST, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 50
+// Set-Cookie:  csrftoken=K0rHwwPhO9sQfJqVRZ8BcvlUZBnQIdBOUg2H5qdCyrG65UtvOpPUhNEvMmKTAlVx; expires=Fri, 24 Jul 2020 02:29:42 GMT; Max-Age=31449600; Path=/; SameSite=Lax
+// Set-Cookie:  sessionid=kf8a98a9ppswxvyu6sjnst4p2p1i0hcf; expires=Fri, 09 Aug 2019 02:29:42 GMT; HttpOnly; Max-Age=1209600; Path=/; SameSite=Lax
+// Request duration: 0.141818s
+#+END_SRC
+
+
+#+BEGIN_SRC emacs-lisp :results none
+(setq my_access_token "fefe43ca25b570ed2db1811fcfddb374d4d293c3")
+#+END_SRC
+
+* Password reset
+
+** Step1 
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:EMAIL := my_email
+
+POST :ORIGIN//
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email": ":EMAIL"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Page not found at /rest-auth//</title>
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <style type="text/css">
+    html * { padding:0; margin:0; }
+    body * { padding:10px 20px; }
+    body * * { padding:0; }
+    body { font:small sans-serif; background:#eee; color:#000; }
+    body>div { border-bottom:1px solid #ddd; }
+    h1 { font-weight:normal; margin-bottom:.4em; }
+    h1 span { font-size:60%; color:#666; font-weight:normal; }
+    table { border:none; border-collapse: collapse; width:100%; }
+    td, th { vertical-align:top; padding:2px 3px; }
+    th { width:12em; text-align:right; color:#666; padding-right:.5em; }
+    #info { background:#f6f6f6; }
+    #info ol { margin: 0.5em 4em; }
+    #info ol li { font-family: monospace; }
+    #summary { background: #ffc; }
+    #explanation { background:#eee; border-bottom: 0px none; }
+  </style>
+</head>
+<body>
+  <div id="summary">
+    <h1>Page not found <span>(404)</span></h1>
+    <table class="meta">
+      <tr>
+        <th>Request Method:</th>
+        <td>POST</td>
+      </tr>
+      <tr>
+        <th>Request URL:</th>
+        <td>http://127.0.0.1:8000/rest-auth//</td>
+      </tr>
+      
+    </table>
+  </div>
+  <div id="info">
+    
+      <p>
+      Using the URLconf defined in <code>demo.urls</code>,
+      Django tried these URL patterns, in this order:
+      </p>
+      <ol>
+        
+          <li>
+            
+                ^$
+                [name='home']
+            
+          </li>
+        
+          <li>
+            
+                ^signup/$
+                [name='signup']
+            
+          </li>
+        
+          <li>
+            
+                ^email-verification/$
+                [name='email-verification']
+            
+          </li>
+        
+          <li>
+            
+                ^login/$
+                [name='login']
+            
+          </li>
+        
+          <li>
+            
+                ^logout/$
+                [name='logout']
+            
+          </li>
+        
+          <li>
+            
+                ^password-reset/$
+                [name='password-reset']
+            
+          </li>
+        
+          <li>
+            
+                ^password-reset/confirm/$
+                [name='password-reset-confirm']
+            
+          </li>
+        
+          <li>
+            
+                ^user-details/$
+                [name='user-details']
+            
+          </li>
+        
+          <li>
+            
+                ^password-change/$
+                [name='password-change']
+            
+          </li>
+        
+          <li>
+            
+                ^password-reset/confirm/(?P&lt;uidb64&gt;[0-9A-Za-z_\-]+)/(?P&lt;token&gt;[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$
+                [name='password_reset_confirm']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^password/reset/$
+                [name='rest_password_reset']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^password/reset/confirm/$
+                [name='rest_password_reset_confirm']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^login/$
+                [name='rest_login']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^logout/$
+                [name='rest_logout']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^user/$
+                [name='rest_user_details']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/
+                
+            
+                ^password/change/$
+                [name='rest_password_change']
+            
+          </li>
+        
+          <li>
+            
+                ^rest-auth/registration/
+                
+            
+          </li>
+        
+          <li>
+            
+                ^account/
+                
+            
+          </li>
+        
+          <li>
+            
+                ^admin/
+                
+            
+          </li>
+        
+          <li>
+            
+                ^accounts/profile/$
+                [name='profile-redirect']
+            
+          </li>
+        
+          <li>
+            
+                ^docs/$
+                [name='api_docs']
+            
+          </li>
+        
+      </ol>
+      <p>
+        
+        The current path, <code>rest-auth//</code>, didn't match any of these.
+      </p>
+    
+  </div>
+
+  <div id="explanation">
+    <p>
+      You're seeing this error because you have <code>DEBUG = True</code> in
+      your Django settings file. Change that to <code>False</code>, and Django
+      will display a standard 404 page.
+    </p>
+  </div>
+</body>
+</html>
+
+<!-- POST http://127.0.0.1:8000/rest-auth// -->
+<!-- HTTP/1.1 404 Not Found -->
+<!-- Date: Fri, 26 Jul 2019 02:31:32 GMT -->
+<!-- Server: WSGIServer/0.2 CPython/3.7.2 -->
+<!-- Content-Type: text/html -->
+<!-- X-Frame-Options: SAMEORIGIN -->
+<!-- Content-Length: 5113 -->
+<!-- Request duration: 0.012672s -->
+#+END_SRC
+
+
+* Sign Out
+
+#+BEGIN_SRC restclient
+:ORIGIN := my_origin
+:ACCESS_TOKEN := my_access_token
+
+POST :ORIGIN/logout/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "token": "ACCESS_TOKEN"
+}
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "detail": "Successfully logged out."
+}
+// POST http://127.0.0.1:8000/rest-auth/logout/
+// HTTP/1.1 200 OK
+// Date: Wed, 24 Jul 2019 08:17:16 GMT
+// Server: WSGIServer/0.2 CPython/3.7.2
+// Content-Type: application/json
+// Vary: Accept, Cookie
+// Allow: GET, POST, HEAD, OPTIONS
+// X-Frame-Options: SAMEORIGIN
+// Content-Length: 37
+// Request duration: 0.009897s
+#+END_SRC
+
