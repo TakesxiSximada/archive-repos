@@ -1,0 +1,13 @@
+#+TITLE: CLI command to calculate GCD
+
+* Build
+
+#+BEGIN_SRC shell :results none
+cargo build
+#+END_SRC
+
+* Run tests
+
+#+BEGIN_SRC shell :results none
+cargo test
+#+END_SRC
