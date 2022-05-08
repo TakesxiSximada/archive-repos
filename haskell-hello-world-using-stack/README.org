@@ -1,0 +1,20 @@
+#+TITLE: Haskell Hello World Using Stack
+
+
+* Create a project
+
+#+BEGIN_SRC 
+stack new hello-world --bare
+#+END_SRC
+
+* Build a binary
+
+#+BEGIN_SRC 
+stack build
+#+END_SRC
+
+* Execute binary
+
+#+BEGIN_SRC 
+stack exec hello-world-exe
+#+END_SRC
