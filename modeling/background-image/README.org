@@ -1,0 +1,3 @@
+#+TITLE: 背景画像を設定する
+
+[[./tutorial.gif]]
