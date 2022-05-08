@@ -1,0 +1,8 @@
+[package]
+name = "rust-plot-mandelbrot"
+version = "0.1.0"
+authors = ["sximada <50688746+sximada@users.noreply.github.com>"]
+edition = "2018"
+
+[dependencies]
+num = "0.1.34"
