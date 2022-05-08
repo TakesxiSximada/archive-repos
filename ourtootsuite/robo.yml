@@ -1,0 +1,52 @@
+help:
+  summary: "Display usage"
+  exec: echo "Enjoy toot!"
+
+
+enc:
+  summary: "NG_WORDSとEND_WORDSを圧縮"
+  command: |
+    base64 < END_WORDS.txt | gzip > END_WORDS.dat
+    base64 < NG_WORDS.txt | gzip > NG_WORDS.dat
+
+
+dec:
+  summary: "NG_WORDSとEND_WORDSを解凍"
+  command: |
+    gzip -dc END_WORDS.dat | base64 -d > END_WORDS.txt
+    gzip -dc NG_WORDS.dat | base64 -d > NG_WORDS.txt
+
+
+export:
+  summary: "MongoDBからTootを抽出してtextファイルに出力します"
+  command: mongo --quiet mstdn ./export-toot.js > toots.txt
+
+
+cleanup:
+  summary: "抽出したTootにはゴミ(HTMLタグなど)がふくまれているので除去する"
+  command: python cleanup-toots.py --target toots.txt --output toots.cleaned.txt
+
+
+corpus:
+  summary: "わかちがきしてmarkovで利用しやすいデータにする"
+  command: python corpus.py --target toots.cleaned.txt --output toots.corpus.txt
+
+
+learn:
+  summary: "markovを用いて学習させる"
+  command: python learn_markov.py --target toots.corpus.txt --output toots.markovify.json
+
+
+sentence:
+  summary: "文章を生成"
+  command: python generate_sentence.py --target toots.markovify.json --count 100
+
+
+t:
+  summary: "bot実行"
+  command: python bot.py --target toots.markovify.json --interval 60
+
+
+serve:
+  summary: "APIサーバ起動"
+  command: FLASK_APP=serve.py flask run
