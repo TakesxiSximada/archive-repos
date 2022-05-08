@@ -1,0 +1,14 @@
+- name: Setting sshd_config
+  template:
+    src: sshd_config
+    dest: /etc/ssh/sshd_config
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  notify: Reload sshd
+
+- name: Setting ssh service settings
+  systemd:
+    name: ssh
+    state: started
+    enabled: yes

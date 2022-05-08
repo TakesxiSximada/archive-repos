@@ -1,0 +1,10 @@
+---
+- name: Deploy servers
+  hosts: all
+  gather_facts: no
+  become: yes
+  roles:
+    - symdon/auth
+    - symdon/demo-angular
+    - role: symdon/mailhog
+      tags: symdon/mailhog

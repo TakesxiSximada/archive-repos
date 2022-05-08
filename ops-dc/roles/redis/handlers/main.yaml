@@ -1,0 +1,5 @@
+- name: Reload redis-server
+  listen: Reload redis-server
+  systemd:
+    name: redis-server.service
+    state: reloaded

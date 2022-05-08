@@ -1,0 +1,10 @@
+- name: Block specific IP (attack#1)
+  iptables:
+    chain: INPUT
+    source: "{{ addr }}"
+    jump: DROP
+    state: present
+  become: yes
+  loop_control:
+    loop_var: addr
+  with_items: "{{ ip_ban_list }}"

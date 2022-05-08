@@ -1,0 +1,7 @@
+---
+- name: Debug
+  hosts: all
+  gather_facts: no
+  become: yes
+  tasks:
+    - debug: msg="OK"

@@ -1,0 +1,68 @@
+#+TITLE: ops-dc
+
+#+BEGIN_QUOTE
+No! Try not. Do. Or do not. There is no try.
+
+(Star Wars: Episode V The Empire Strikes Back)
+#+END_QUOTE
+
+** Deploy it!!
+
+#+BEGIN_SRC
+ansible-playbook site.yaml
+#+END_SRC
+
+
+** Must not be known to anyone
+
+#+BEGIN_EXAMPLE
+echo "SECRET" > .vault_password
+#+END_EXAMPLE
+
+* Services
+
+** Uptimerobot
+
+https://uptimerobot.com/
+
+#+BEGIN_SRC restclient
+POST https://api.uptimerobot.com/v2/getMonitors
+Content-Type: application/x-www-form-urlencoded
+
+api_key=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx&format=json&logs=1
+
+#+END_SRC
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "stat": "fail",
+  "error": {
+    "type": "invalid_parameter",
+    "parameter_name": "api_key",
+    "passed_value": "XXXXXXXXXXXXXXXXXXXXXXXXXx",
+    "message": "api_key not found."
+  }
+}
+// POST https://api.uptimerobot.com/v2/getMonitors
+// HTTP/1.1 200 OK
+// Date: Thu, 12 Sep 2019 09:42:19 GMT
+// Content-Type: application/json; charset=utf-8
+// Content-Length: 164
+// Connection: keep-alive
+// Access-Control-Allow-Origin: *
+// Etag: W/"0f-VJHwjP0rzMSEFMwL3TjAW/m+WUQ"
+// Vary: Accept-Encoding
+// Expect-CT: max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+// Server: cloudflare
+// CF-RAY: 0f0f0f0f0f0f0f0f-NRT
+// Request duration: 0.247667s
+#+END_SRC
+
+* Others
+
+- https://app.datadoghq.com/
+- https://dash.cloudflare.com/
+- https://lastpass.com/
+- https://papertrailapp.com/
+- https://uptimerobot.com/

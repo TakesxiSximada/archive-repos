@@ -1,0 +1,38 @@
+---
+- name: Deploy www.symdon.ga service
+  hosts: all
+  gather_facts: no
+  become: yes
+  vars:
+    package_repo: https://github.com/sximada/www.symdon.ga
+    package_version: 201910.06
+  handlers:
+    - include: handlers/main.yaml
+  roles:
+    - role: ansistrano.deploy
+      vars:
+        ansistrano_deploy_to: /opt/www.symdon.ga
+        ansistrano_deploy_via: download_unarchive
+        ansistrano_get_url: "{{ package_repo}}/archive/{{ package_version }}.tar.gz"
+  tasks:
+    - name: change symbolic link
+      file:
+        src: "/opt/www.symdon.ga/current/www.symdon.ga-{{ package_version }}/dist"
+        dest: /var/www/www.symdon.ga
+        state: link
+
+    - name: avairable site
+      template:
+        src: sites-available/www.conf
+        dest: "/etc/nginx/sites-available/www.symdon.ga"
+      vars:
+        domain: "www.symdon.ga"
+        static_file_path: "/var/www/www.symdon.ga"
+      notify: service nginx reload
+      changed_when: true
+
+    - name: enable site
+      file:
+        src: "/etc/nginx/sites-available/www.symdon.ga"
+        dest: "/etc/nginx/sites-enabled/www.symdon.ga"
+        state: link

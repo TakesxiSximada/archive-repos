@@ -1,0 +1,6 @@
+symdon_auth:
+  host: "auth.symdon.ga"
+  keycloak: "127.0.0.1:8080"
+  cert_dir: "/etc/letsencrypt/live/symdon.ga"
+    
+
