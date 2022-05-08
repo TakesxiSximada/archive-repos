@@ -1,0 +1,18 @@
+[submodule "working"]
+	path = working
+	url = git@bitbucket.org:takesxi_sximada/working.git
+[submodule "pleroma/src"]
+	path = pleroma/src
+	url = https://git.pleroma.social/pleroma/pleroma.git
+[submodule "modern-django-example/src"]
+	path = modern-django-example/src
+	url = git@github.com:TakesxiSximada/modern-django-example.git
+[submodule "TIL/src"]
+	path = TIL/src
+	url = git@github.com:TakesxiSximada/TIL.git
+[submodule "presentations/src"]
+	path = presentations/src
+	url = git@github.com:TakesxiSximada/presentations.git
+[submodule "aws-static-files/src"]
+	path = aws-static-files/src
+	url = git@github.com:TakesxiSximada/aws-static-files.git
