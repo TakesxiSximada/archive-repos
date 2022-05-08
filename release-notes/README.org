@@ -1,0 +1,27 @@
+#+TITLE: Release Notes
+
+
+** [[https://www.gnu.org/software/emacs/history.html][Emacs]]
+
+*** [[https://lists.gnu.org/archive/html/emacs-devel/2019-04/msg00503.html][Emacs 26.2]]
+
+
+** [[https://nodejs.org/ja/download/releases/][Node.js]]
+
+*** [[https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V12.md#12.6.0][Node.js 12.6.0]]
+
+*** [[https://github.com/nodejs/node/blob/master/doc/changelogs/CHANGELOG_V8.md#8.16.0][Node.js v8.16.0]]
+
+
+** Python
+
+*** [[https://docs.python.org/3/whatsnew/changelog.html][Python 3.x]]
+
+**** [[https://docs.python.org/3/whatsnew/changelog.html#python-3-7-4-final][Python 3.7.4]]
+
+
+** MySQL
+
+*** [[https://dev.mysql.com/doc/relnotes/mysql/8.0/en/][MySQL 8.0.x]]
+
+**** [[https://dev.mysql.com/doc/relnotes/mysql/8.0/en/news-8-0-16.html][8.0.16]]
