@@ -1,0 +1,15 @@
+#+TITLE: Sentry for local
+
+Launch Sentry.
+
+#+BEGIN_SRC :results none
+docker-compose up -d
+#+END_SRC
+
+Migrate database.
+
+#+BEGIN_SRC
+docker-compose exec web sentry upgrade
+#+END_SRC
+
+Open http://127.0.0.1:9000/ in your web browser.
